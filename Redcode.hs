@@ -32,10 +32,11 @@ type Core = [Loc]
 data Warrior = Warrior { warrior_name :: String,
                          warrior_code :: [Loc] }
 
-coresize = 124
+coresize = 1024
 
 init_core :: Core
 init_core = take coresize (repeat (Loc DAT (Val 0) (Val 0)))
+
 
 data System = S { system_core :: [Loc],
                   processes :: [(String, PC)] }
@@ -50,6 +51,7 @@ instance Show System where
         showPC i [] = ""
         showPC i ((p,i'):xs) | i == i' = "\t <- " ++ p
                              | otherwise = showPC i xs
+                         
 
 init_state = S init_core []
 
