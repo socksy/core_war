@@ -1,5 +1,8 @@
 module Redcode where
 
+import Random
+import Test.QuickCheck
+
 type PC = Int -- Program counter
 
 data Field = Val  { field_val :: Int }
@@ -32,7 +35,7 @@ type Core = [Loc]
 data Warrior = Warrior { warrior_name :: String,
                          warrior_code :: [Loc] }
 
-coresize = 1024
+coresize = 48
 
 init_core :: Core
 init_core = take coresize (repeat (Loc DAT (Val 0) (Val 0)))
@@ -64,13 +67,30 @@ updateIndex n x (y:ys) = y : updateIndex (n-1) x ys
 -- Add a warrior to the core at a specific location, and set its program 
 -- counter
 
+{-
 addWarrior :: Int -> Warrior -> System -> System
 addWarrior l (Warrior name w) (S core pcs) 
     = S (add' l w core) ((name, l) : pcs)
   where
     add' l (w:ws) core = add' (l+1) ws (updateIndex l w core)
     add' l []     core = core
+-}
+
+-- Add a warrior to the core at a random location, and set its program 
+-- counter
  
+addWarrior :: Warrior -> System -> Int -> System
+addWarrior war s i = 
+	let randomlist = randomRs (0, coresize - (length (warrior_code war))) (mkStdGen i);
+		l = randomlist !! i;
+	in if any (\x -> snd(x) == l) (processes s) then addWarrior war s (i+1)  
+		  else S (add' l (warrior_code war) (system_core s)) (((warrior_name war), l) : (processes s))
+
+add' :: Int -> [Loc] -> [Loc] -> [Loc]
+add' l (w:ws) core = add' (l+1) ws (updateIndex l w core)
+add' l []     core = core
+
+
 imp, dwarf :: Warrior
 imp = Warrior "Imp" [Loc MOV (Addr 0) (Addr 1)]
 
@@ -80,5 +100,5 @@ dwarf = Warrior "Dwarf"
             Loc JMP (Val (-2)) (Addr 0),
             Loc DAT (Val 0) (Val 4)]
 
-test_state = addWarrior 5 dwarf (addWarrior 30 imp init_state)
+test_state = addWarrior dwarf (addWarrior imp init_state 0) 1
 
