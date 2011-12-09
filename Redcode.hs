@@ -17,7 +17,7 @@ data Instr = DAT | MOV | NOP
            | ADD | SUB | MUL | DIV
            | MOD | JMP | JMZ | JMN
            | DJN | SEQ | SNE | SLT
-  deriving Show
+  deriving (Eq,Show)
 
 data Loc = Loc { instruction :: Instr,
                  a_field :: Field,
@@ -32,7 +32,7 @@ type Core = [Loc]
 data Warrior = Warrior { warrior_name :: String,
                          warrior_code :: [Loc] }
 
-coresize = 48
+coresize = 124
 
 init_core :: Core
 init_core = take coresize (repeat (Loc DAT (Val 0) (Val 0)))

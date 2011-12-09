@@ -6,7 +6,7 @@ import Display
 
 -- Simple version of the main program: set up a test state, wait for
 -- user input and execute one step, until only one process left
-
+{-
 main :: IO ()
 main = loop test_state 0
 
@@ -19,8 +19,8 @@ loop s i = do print s
                   _ -> loop s' (i + 1)
 
 -- Replace with the following for the graphical version
+-}
 
-{-
 main :: IO () 
 main = runVM test_state
--}
+
