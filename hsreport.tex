@@ -1,0 +1,86 @@
+\documentclass{report}
+\setcounter{chapter}{0}
+\usepackage{graphicx}
+%Makes it write "Part" instead of "Chapter" at the beginning of each Chapter
+\renewcommand{\chaptername}{Part} 
+
+\begin{document}
+\title{CS2006 --- Haskell-Core war}
+\author{Chengyi Lin, Ross Apted and Ben Lovell}
+
+\maketitle
+\tableofcontents
+
+\chapter{Running instructions}
+	\paragraph{}...
+
+\chapter{Introduction}
+	\section{Aim}
+
+		\paragraph{}The aim of this Project is to implement the programming game 'Core War' in Haskell. The core war program includes a virtual machine, which executes a collection of Redcode programmes. A parser for the Redcode language, which translates a text string, read from file into a Redcode program. The program must also use a visualizer, which show the contents of the virtual machine’s memory graphically. 
+
+We have successfully achieved this aim.
+
+		
+
+	\section{Requirements:}
+		\subsection{Primary requirements}
+			\begin{itemize}
+			\item Implemented  the Core war game
+			\item Implemented the step', which exectues each instruction in the virtual machine
+			\item Implemented drawSystem in Display.hs which draws visual representation of the virtual machine memory.
+			\item Implemented parser to convert strings to instructions, fields and complete programs.
+			\item Extended maain so that it reads two files from command line, parses them, adds them to the core ans executes them against each other.
+			\item Supplied test warriors
+			\end{itemize}
+			\paragraph{}All basic requirements were achieved.
+			
+			\subsection{Secondary Requirements}
+			\begin{itemize}
+			\item Extended the instction set in the Virtual machine added SPL instructors which splits a warrior into two processes. 
+			\item Added lables to language. so instead of giving relative addresses, they can be given names
+			\item 
+			\item 
+		
+			
+			\end{itemize}
+			\paragraph{}All additional requirements were achieved.
+
+\chapter{Description}
+		\section{VM.hs}
+			\paragraph{}....
+		\section{Parsing.hs}
+			\paragraph{}....
+		\section{Display.hs}
+			\paragraph{}....
+		\section{Main.hs}
+			\paragraph{}....
+		
+
+\chapter{Testing}
+	\section{How we Tested}
+		\paragraph{}
+Used command line to run program tying all possible, cases and took screen shots.
+	\section{Tests}
+		\begin{itemize}
+			\item example test: normal case--- Passed \newline \newline \includegraphics[height=60mm]{test}
+			\item
+			\item
+			\item
+			
+			
+\chapter{Problems encountered }
+	\paragraph{}...
+
+\chapter{How we worked as a team}
+	\paragraph{}...
+	
+\chapter{Conclusion}
+	\paragraph{} We successfully implemented the core war game using Haskell. We worked as a team to achieve all the basic requirements. Fully implementing the virtual Machine, display and the parser. We also achieved some additional requirements such as extended Virtual Machine instruction set and adding labels. 
+
+\chapter{References}
+	\paragraph{}...			
+			
+\end{itemize}
+
+\end{document}
