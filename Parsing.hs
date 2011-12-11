@@ -17,7 +17,7 @@ The monad of parsers
 --------------------
 -}
 
-newtype Parser a              =  P (String -> [(a,String)])
+newtype Parser a              =  P (String -> [(a,String)]) 
 
 instance Monad Parser where
    return v                   =  P (\inp -> [(v,inp)])
@@ -30,6 +30,8 @@ instance MonadPlus Parser where
    p `mplus` q                =  P (\inp -> case parse p inp of
                                                []        -> parse q inp
                                                [(v,out)] -> [(v,out)])
+
+   
 
 {-
 Basic parsers
@@ -136,3 +138,6 @@ integer                       =  token int
 
 symbol                        :: String -> Parser String
 symbol xs                     =  token (string xs)
+
+
+
