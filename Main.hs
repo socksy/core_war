@@ -29,7 +29,6 @@ main = do file_list <- getArgs
           file_2 <- readFile $ last file_list
           let war_1 = Warrior "war1" (eval file_1);
           	  war_2 = Warrior "war2" (eval file_2);
-          a <- randomInt 0 (coresize - (length $ warrior_code war_1))
-          b <- randomInt 0 (coresize - (length $ warrior_code war_2))
-          runVM $ addWarrior b war_2 (addWarrior a war_1 init_state)
+          	  state = addWarrior war_2 (addWarrior war_1 init_state 0) 1;
+          runVM state
 

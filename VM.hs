@@ -1,6 +1,7 @@
 module VM where
 
 import Redcode
+import Test.QuickCheck as qc
 --import Control.Monad.State
 
 -- Get the data stored at location i in the core - if the location
