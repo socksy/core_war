@@ -36,13 +36,15 @@ and executes the warriors against each other. ---Done
 	\paragraph{}The program was separated into logically separate parts. This was to allow modularity in the scraping part and the user interface part. 
 	\paragraph{}On the one hand, there was the scraping part. This was modularised by using abstract classes and 
 		\section{VM.hs}
-			\paragraph{}....
+			\paragraph{}Step’ executes instructions in the virtual machine, there is a match for each instruction that program could except. Each match takes pc which is the current memory location as a parameter.  Absolute is used to calculate the destination location. The match then obtains the content in the destination, the destination,  is then updated depending on the instruction. An example update is that of the ADD instruction, in this case the a-field of the current location is added to the b-filed of the destination location and then is stored in the b-filed of the destination location.
 		\section{Parsing.hs}
 			\paragraph{}....
 		\section{Display.hs}
-			\paragraph{}....
+			\paragraph{}In display.hs we implemented drawSystem and two help functions: check and draw. Check is used to check each instruction and depending on the instruction, it will draw the 10*10 polygon with different color for each memory location. Draw is used to help check to render the polygon, the color of this polygon will be decided in check function. drawSystem also draws the text for background.
 		\section{Main.hs}
-			\paragraph{}....
+			\paragraph{}In main.hs getArgs is used to get the list of arguments which contains the file names of the warriors. The eval function in Grammar.hs  is then used to parse the file and return the list of instructions. The instruction list is now used to create the warrior and add it to memory.
+		\section{Redcode.hs}
+			\paragraph{}In Redcode,hs the addWarrior function has been modified, to allow a warrior to be added to a random location. A check is made to make sure that a warrior is not added to a memory location in which another warrior already exists. A randomInt function was written to generate a random number in the desired range. This is then used to place the warrior.
 
 \chapter{Testing}
 	\section{How we Tested}
@@ -55,17 +57,13 @@ Used command line to run program tying all possible, cases and took screen shots
 			\item Add warriors to random locations --- Passed \newline \newline \includegraphics[height=90mm]{3_1} \newline \newline \includegraphics[height=90mm]{3_2}
 			\item Never set two warriors to same location (Test by setting the core size to 2, and run program several times, and see if any errors happen) --- Passed \newline \newline \includegraphics[height=90mm]{4}
 			
-\chapter{Problems encountered }
-	\paragraph{}
 
-\chapter{How we worked as a team}
-	\paragraph{}...
+
 	
 \chapter{Conclusion}
 	\paragraph{} We successfully implemented the core war game using Haskell. We worked as a team to achieve all the basic requirements. Fully implementing the virtual Machine, display and the parser. We also achieved some additional requirements such as extended Virtual Machine instruction set and adding labels.  
 
-\chapter{References}
-	\paragraph{}...			
+			
 			
 \end{itemize}
 
