@@ -16,11 +16,11 @@
 
 \chapter{Introduction}
 	\section{Aim}
-		\paragraph{}The aim of this Project is to implement the programming game 'Core War' in Haskell. The core war program includes a virtual machine, which executes a collection of Redcode programmes. A parser for the Redcode language, which translates a text string, read from file into a Redcode program. The program must also use a visualizer, which show the contents of the virtual machine’s memory graphically. 
+		\paragraph{}The aim of this Project is to implement the programming game ``Core War'' in Haskell. The core war program includes a virtual machine, which executes a collection of Redcode programmes. A parser for the Redcode language, which translates a text string, read from file into a Redcode program. The program must also use a visualizer, which show the contents of the virtual machine's memory graphically. 
 	\section{Requirements:}
 		\subsection*{Primary requirements}
 			\begin{itemize}
-				\item Implementing step�, which executes each instruction in the virtual machine. --- Done
+				\item Implementing step', which executes each instruction in the virtual machine. --- Done
 				\item Implementing drawSystem in Display.hs which draws a visual representation of the core contents. ---Done
 				\item Implementing parsers to convert Strings to instructions. ---Done
 				\item Extend main so that it reads two files from the command line, parses them, adds them to the core
@@ -33,8 +33,6 @@ and executes the warriors against each other. ---Done
 			\end{itemize}
 
 \chapter{Description}
-	\paragraph{}The program was separated into logically separate parts. This was to allow modularity in the scraping part and the user interface part. 
-	\paragraph{}On the one hand, there was the scraping part. This was modularised by using abstract classes and 
 		\section{VM.hs}
 			\paragraph{}Step’ executes instructions in the virtual machine, there is a match for each instruction that program could except. Each match takes pc which is the current memory location as a parameter.  Absolute is used to calculate the destination location. The match then obtains the content in the destination, the destination,  is then updated depending on the instruction. An example update is that of the ADD instruction, in this case the a-field of the current location is added to the b-filed of the destination location and then is stored in the b-filed of the destination location.
 		\section{Parsing.hs}
@@ -75,14 +73,13 @@ Used command line to run program tying all possible, cases and took screen shots
 			\item Add warriors to random locations --- Passed \newline \newline \includegraphics[height=90mm]{3_1} \newline \newline \includegraphics[height=90mm]{3_2}
 			\item Never set two warriors to same location (Test by setting the core size to 2, and run program several times, and see if any errors happen) --- Passed \newline \newline \includegraphics[height=90mm]{4}
 			
+\end{itemize}
 
 
 	
 \chapter{Conclusion}
-	\paragraph{} We successfully implemented the core war game using Haskell. We worked as a team to achieve all the basic requirements. Fully implementing the virtual Machine, display and the parser. We also achieved some additional requirements such as extended Virtual Machine instruction set and adding labels.  
-
+	\paragraph{} We have implemented a working version of the Core War game and specification that supports all of the '88 spec for Redcode (except SPL), and have a working parser converting red code programs into runnable programs on the VM. We also have a working and wonderful display, showing multiple warriors at once. On top of that, programs spawn in random locations in a way that means that they do not overlap, even when there are as many locations as there are warriors (where each warrior takes up one location and the match is a draw.
 			
 			
-\end{itemize}
 
 \end{document}
