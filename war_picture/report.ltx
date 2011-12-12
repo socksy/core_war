@@ -16,17 +16,18 @@
 
 \chapter{Introduction}
 	\section{Aim}
-		\paragraph{}The aim of this Project is to implement a core war programming game in which two (or more) programs (known as warriors) battle to control a virtual machine. The warriors are written in a simple programming language called Redcode. The object of the game is to cause the opposing program(s) to terminate, leaving the winning warrior in control of the machine.
+		\paragraph{}The aim of this Project is to implement the programming game 'Core War' in Haskell. The core war program includes a virtual machine, which executes a collection of Redcode programmes. A parser for the Redcode language, which translates a text string, read from file into a Redcode program. The program must also use a visualizer, which show the contents of the virtual machineâ€™s memory graphically. 
 	\section{Requirements:}
 		\subsection*{Primary requirements}
 			\begin{itemize}
-				\item Implementing stepÕ, which executes each instruction in the virtual machine. --- Done
+				\item Implementing stepï¿½, which executes each instruction in the virtual machine. --- Done
 				\item Implementing drawSystem in Display.hs which draws a visual representation of the core contents. ---Done
 				\item Implementing parsers to convert Strings to instructions. ---Done
-				\item Extend main so that it reads two files from the command line, parses them, adds them to the coreand executes the warriors against each other. ---Done
+				\item Extend main so that it reads two files from the command line, parses them, adds them to the core
+and executes the warriors against each other. ---Done
 			\end{itemize}
 			\paragraph{}Other things for the project were also tackled:
-			\subsection*{Secondary Requirements}
+			\subsection*{Secondary requirements}
 			\begin{itemize}
 				\item Extend addWarrior so that it adds the warrior to a random location in the core. You will need to make sure that it does not overlap with another warrior. ---Done
 			\end{itemize}
@@ -34,15 +35,14 @@
 \chapter{Description}
 	\paragraph{}The program was separated into logically separate parts. This was to allow modularity in the scraping part and the user interface part. 
 	\paragraph{}On the one hand, there was the scraping part. This was modularised by using abstract classes and 
-		\section{base.py}
+		\section{VM.hs}
 			\paragraph{}....
-		\section{session.py}
+		\section{Parsing.hs}
 			\paragraph{}....
-		\section{Reddit.py}
+		\section{Display.hs}
 			\paragraph{}....
-		\section{storyview.py}
+		\section{Main.hs}
 			\paragraph{}....
-		
 
 \chapter{Testing}
 	\section{How we Tested}
@@ -62,7 +62,7 @@ Used command line to run program tying all possible, cases and took screen shots
 	\paragraph{}...
 	
 \chapter{Conclusion}
-	\paragraph{} We successfully implement the core war game, using haskell. And learning quite a lot for using gloss. We  worked as a team and met the basic requirements and as well as some additional ones.  
+	\paragraph{} We successfully implemented the core war game using Haskell. We worked as a team to achieve all the basic requirements. Fully implementing the virtual Machine, display and the parser. We also achieved some additional requirements such as extended Virtual Machine instruction set and adding labels.  
 
 \chapter{References}
 	\paragraph{}...			
