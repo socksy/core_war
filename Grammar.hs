@@ -22,8 +22,9 @@ IndirectB ::= @ Int
 -----------------
 -}
 
-eval :: String -> [([RC.Loc], String)]
-eval str = parse program str
+--Will be empty if failed to parse
+eval :: String -> [RC.Loc]
+eval str = fst $ head $ parse program str
 
 program :: Parser [RC.Loc]
 program = do x <- statement

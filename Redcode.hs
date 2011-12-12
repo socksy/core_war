@@ -35,7 +35,7 @@ type Core = [Loc]
 data Warrior = Warrior { warrior_name :: String,
                          warrior_code :: [Loc] }
 
-coresize = 48
+coresize = 1024
 
 init_core :: Core
 init_core = take coresize (repeat (Loc DAT (Val 0) (Val 0)))
@@ -67,23 +67,11 @@ updateIndex n x (y:ys) = y : updateIndex (n-1) x ys
 -- Add a warrior to the core at a specific location, and set its program 
 -- counter
 
-{-
-addWarrior :: Int -> Warrior -> System -> System
-addWarrior l (Warrior name w) (S core pcs) 
-    = S (add' l w core) ((name, l) : pcs)
-  where
-    add' l (w:ws) core = add' (l+1) ws (updateIndex l w core)
-    add' l []     core = core
--}
+randomInt :: Int -> Int -> IO Int
+randomInt x y = getStdRandom (randomR (x,y)) 
 
--- Add a warrior to the core at a random location, and set its program 
--- counter
- 
-addWarrior :: Warrior -> System -> Int -> System
-addWarrior war s i = 
-	let randomlist = randomRs (0, coresize - (length (warrior_code war))) (mkStdGen i);
-		l = randomlist !! i;
-	in if any (\x -> snd(x) == l) (processes s) then addWarrior war s (i+1)  
+addWarrior :: Int -> Warrior -> System -> System
+addWarrior l war s = if any (\x -> snd(x) == l) (processes s) then addWarrior (l+1) war s   
 		  else S (add' l (warrior_code war) (system_core s)) (((warrior_name war), l) : (processes s))
 
 add' :: Int -> [Loc] -> [Loc] -> [Loc]
@@ -100,5 +88,5 @@ dwarf = Warrior "Dwarf"
             Loc JMP (Val (-2)) (Addr 0),
             Loc DAT (Val 0) (Val 4)]
 
-test_state = addWarrior dwarf (addWarrior imp init_state 0) 1
+test_state = addWarrior 0 dwarf (addWarrior 20 imp init_state)
 
