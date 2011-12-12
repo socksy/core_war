@@ -54,7 +54,7 @@ and executes the warriors against each other. ---Done
 			IndirectB ::= @ Int
 			\end{verbatim}
 			\paragraph{}As a result, there is a program function that takes a statement and possible a list of more program, or just returns the original statement in a list. Originally, this called a command, which then passed to a massive list of functions each checking for the right string and getting two fields. However, this rather ridiculous, and so all of the commands were moved into a massive list of pairs containing an instruction and a string representation of that instruction, and a new command function that takes an instruction and a string representation and returns a Parser Loc data type. 
-			\paragraph{}The function parseCommands takes this and maps it over the entire list of tuples, which is then passed to a fold function folds from the right using the monadplus or function to simulate the ``Command'' part of the grammar. This was then used in the statement. These all relied on fields, which simply get a char match for a modifier (such as `#') and an int.
+			\paragraph{}The function parseCommands takes this and maps it over the entire list of tuples, which is then passed to a fold function folds from the right using the monadplus or function to simulate the ``Command'' part of the grammar. This was then used in the statement. These all relied on fields, which simply get a char match for a modifier (such as `\#') and an int.
 		\section{Display.hs}
 			\paragraph{}In display.hs we implemented drawSystem and two help functions: check and draw. Check is used to check each instruction and depending on the instruction, it will draw the 10*10 polygon with different color for each memory location. Draw is used to help check to render the polygon, the color of this polygon will be decided in check function. drawSystem also draws the text for background.
 		\section{Main.hs}
@@ -73,8 +73,7 @@ Used command line to run program tying all possible, cases and took screen shots
 			\item Add warriors to random locations --- Passed \newline \newline \includegraphics[height=90mm]{3_1} \newline \newline \includegraphics[height=90mm]{3_2}
 			\item Never set two warriors to same location (Test by setting the core size to 2, and run program several times, and see if any errors happen) --- Passed \newline \newline \includegraphics[height=90mm]{4}
 			
-\end{itemize}
-
+		\end{itemize}
 
 	
 \chapter{Conclusion}
