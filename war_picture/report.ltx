@@ -38,7 +38,25 @@ and executes the warriors against each other. ---Done
 		\section{VM.hs}
 			\paragraph{}Step’ executes instructions in the virtual machine, there is a match for each instruction that program could except. Each match takes pc which is the current memory location as a parameter.  Absolute is used to calculate the destination location. The match then obtains the content in the destination, the destination,  is then updated depending on the instruction. An example update is that of the ADD instruction, in this case the a-field of the current location is added to the b-filed of the destination location and then is stored in the b-filed of the destination location.
 		\section{Parsing.hs}
-			\paragraph{}....
+			\paragraph{}The job of the parser was to take a string with a valid Redcode program and to return a set of instructions in the form of Redcode Loc's. In order to this, the Parsing module provided was used, and Haskell code was used to implement a grammar. This grammar was the following:
+			\begin{verbatim}
+			Program ::= Statement (Program | Empty)
+			Statement ::= Comment | Instruction
+			Comment ::= ; Line
+			Line ::= "\n"
+			Instruction ::= Command Field Field
+			Command ::= DAT | MOV | NOP
+					   | ADD | SUB | MUL | DIV
+					   | MOD | JMP | JMZ | JMN
+					   | DJN | SEQ | SNE | SLT
+			Field ::= Immediate | IndirectA | IndirectB | Address
+			Address ::= Int
+			Immediate ::= # Int
+			IndirectA ::= $ Int
+			IndirectB ::= @ Int
+			\end{verbatim}
+			\paragraph{}As a result, there is a program function that takes a statement and possible a list of more program, or just returns the original statement in a list. Originally, this called a command, which then passed to a massive list of functions each checking for the right string and getting two fields. However, this rather ridiculous, and so all of the commands were moved into a massive list of pairs containing an instruction and a string representation of that instruction, and a new command function that takes an instruction and a string representation and returns a Parser Loc data type. 
+			\paragraph{}The function parseCommands takes this and maps it over the entire list of tuples, which is then passed to a fold function folds from the right using the monadplus or function to simulate the ``Command'' part of the grammar. This was then used in the statement. These all relied on fields, which simply get a char match for a modifier (such as `#') and an int.
 		\section{Display.hs}
 			\paragraph{}In display.hs we implemented drawSystem and two help functions: check and draw. Check is used to check each instruction and depending on the instruction, it will draw the 10*10 polygon with different color for each memory location. Draw is used to help check to render the polygon, the color of this polygon will be decided in check function. drawSystem also draws the text for background.
 		\section{Main.hs}
